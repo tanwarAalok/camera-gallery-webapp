@@ -1,0 +1,93 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+.video-container{
+    height: 99.4vh;
+    width: 100vw;
+    background-color: black;
+}
+
+video{
+    width: 100%;
+    height: 100%;
+}
+
+.action-container{
+    height: 12rem;
+    width: 5rem;
+    position: absolute;
+    top: calc( (99.4vh - 12rem) / 2 );
+    right: 5rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.action-container > * {
+    width: 100%;
+    height: 5rem;
+    border-radius: 50%;
+    border: 5px solid white;
+    display: grid;
+    place-items: center;
+}
+
+.record-btn{
+    background-color: red;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.capture-btn{
+    background-color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.scale-record{
+    animation-name: scale-record;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+
+.scale-capture{
+    animation-name: scale-capture;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+}
+
+@keyframes scale-record {
+    0%{
+        transform: scale(0.8);
+    }
+    100%{
+        transform: scale(1.1);
+    }
+}
+@keyframes scale-capture {
+    0%{
+        transform: scale(0.8);
+    }
+    100%{
+        transform: scale(1.1);
+    }
+}
+
+.timer-container{
+    position: absolute;
+    top: 1rem;
+    left: 2rem;
+    color: aqua;
+    font-size: 0.8rem;
+}
+.timer{
+    display: none;
+}
