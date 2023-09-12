@@ -4,7 +4,7 @@ let captureBtnContainer = document.querySelector(".capture-btn-container");
 let recordBtn = document.querySelector(".record-btn");
 let captureBtn = document.querySelector(".capture-btn");
 let recordFlag = false;
-
+let transparentColor = "transparent";
 let recorder;
 
 let constraints = {
@@ -14,26 +14,26 @@ let constraints = {
 
 let chunks = [];
 
-navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-    video.srcObject = stream
-    recorder = new MediaRecorder(stream);
-
-    recorder.addEventListener("start", (e) => {
-        chunks = [];
-    })
-    recorder.addEventListener("dataavailable", (e) => {
-        chunks.push(e.data);
-    })
-    recorder.addEventListener("stop" , (e) => {
-        // conversion of media chunks to video
-        let blob = new Blob(chunks, {type: "video/mp4"});
-        let videoURL = URL.createObjectURL(blob);
-        let a = document.createElement('a');
-        a.href = videoURL;
-        a.download = "stream.mp4";
-        a.click()
-    })
-})
+// navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+//     video.srcObject = stream
+//     recorder = new MediaRecorder(stream);
+//
+//     recorder.addEventListener("start", (e) => {
+//         chunks = [];
+//     })
+//     recorder.addEventListener("dataavailable", (e) => {
+//         chunks.push(e.data);
+//     })
+//     recorder.addEventListener("stop" , (e) => {
+//         // conversion of media chunks to video
+//         let blob = new Blob(chunks, {type: "video/mp4"});
+//         let videoURL = URL.createObjectURL(blob);
+//         let a = document.createElement('a');
+//         a.href = videoURL;
+//         a.download = "stream.mp4";
+//         a.click()
+//     })
+// })
 
 recordBtnContainer.addEventListener('click', (e) => {
     if(!recorder) return;
@@ -49,6 +49,24 @@ recordBtnContainer.addEventListener('click', (e) => {
         stopTimer();
         recordBtn.classList.remove('scale-record');
     }
+})
+
+captureBtnContainer.addEventListener('click', (e) => {
+    let canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    let tool = canvas.getContext('2d');
+    tool.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    //Filtering
+    tool.fillStyle = transparentColor;
+    tool.fillRect(0, 0, canvas.width, canvas.height);
+
+    let imageURL = canvas.toDataURL();
+    let a = document.createElement('a');
+    a.href = imageURL;
+    a.download = "image.jpg";
+    a.click();
 })
 
 let timerId, counter = 0;
@@ -80,3 +98,13 @@ function stopTimer(){
     timer.innerText = "00:00:00"
     timer.style.display = "none";
 }
+//filtering logic
+let allFilters = document.querySelectorAll('.filter');
+let filterLayerContainer = document.querySelector('.filter-layer');
+allFilters.forEach((filter) => {
+    filter.addEventListener('click', (e) => {
+        transparentColor = getComputedStyle(filter).getPropertyValue('background-color');
+        filterLayerContainer.style.backgroundColor = transparentColor;
+    })
+})
+
