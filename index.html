@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Camera_Gallery WebApp</title>
 </head>
@@ -32,6 +33,18 @@
 
     <div class="filter-layer"></div>
 
+    <span class="material-icons gallery">
+        collections
+    </span>
+
+    <script src="https://unpkg.com/shortid-dist@1.0.5/dist/shortid-2.2.13.min.js"></script>
+    <script src="db.js"></script>
     <script src="script.js"></script>
+    <script>
+        let gallery = document.querySelector(".gallery");
+        gallery.addEventListener('click', (e) => {
+            location.assign('./gallery.html');
+        })
+    </script>
 </body>
 </html>

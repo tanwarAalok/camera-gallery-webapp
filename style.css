@@ -134,3 +134,16 @@ video{
     height: 100vh;
     z-index: 1;
 }
+
+.material-icons{
+    color: white;
+    font-size: 3rem;
+}
+
+.gallery{
+    position: absolute;
+    right: 6rem;
+    bottom: 7rem;
+    cursor: pointer;
+    z-index: 2;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="gallery.css">
+    <title>Gallery</title>
+</head>
+<body>
+   <div class="back">BACK</div>
+
+    <div class="gallery-container"></div>
+
+   <script src="db.js"></script>
+   <script src="gallery.js"></script>
+    <script>
+        let backBtn = document.querySelector('.back')
+        backBtn.addEventListener('click', (e) => {
+            location.assign("./index.html")
+        })
+    </script>
+</body>
+</html>
