@@ -99,7 +99,6 @@ video{
     left: 5rem;
     height: 16rem;
     width: 5rem;
-    background-color: aqua;
     z-index: 2;
 }
 
@@ -111,6 +110,7 @@ video{
     background-repeat: no-repeat;
     background-blend-mode: color-burn;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .orange{
